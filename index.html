@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Convert to Title Case - JavaScript</title>
+  <style type="text/css">
+  body {
+    color: #342f2d;
+    font-family: Inter, sans-serif;
+    font-size: 20px;
+    margin: 48px auto;
+    padding: 0 1em;
+    max-width: 90%;
+  }
+  a {
+    color: #227daa;
+    border-bottom: 1px solid #d4d4d4;
+    text-decoration: none;
+  }
+  h1 {
+    font-weight: 500;
+  }
+  h2 {
+    font-size: 16px;
+    margin: 0;
+  }
+  p {
+    margin: 8px 0 20px;
+  }
+  pre {
+    padding-left: 2em;
+  }
+  code {
+    color: #88441D;
+  }
+  small {
+    font-size: .85em;
+    letter-spacing: 1px;
+  }
+  form {
+    background: #fafafa;
+    -moz-box-shadow: 0 2px 4px #d4d4d4;
+    box-shadow: 0 2px 4px #d4d4d4;
+    margin: 0 -1em 20px;
+    padding: 1em;
+  }
+  input[type=text] {
+    color: #000;
+    border: 1px solid #d4d4d4;
+    -moz-box-shadow: inset 0 1px 1px #d4d4d4;
+    box-shadow: inset 0 1px 1px #d4d4d4;
+    font: inherit;
+    font-size: 20px;
+    padding: 4px;
+    width: 100%;
+  }
+  .recommended img {
+      margin: 0 1em;
+    }
+  .footer {
+    color: #767676;
+    font-size: 12px;
+  }
+  .footer a {
+      color: currentColor;
+  }
+</style>
+  <script async src="https://www.google-analytics.com/analytics.js"></script>
+  <script src="to-title-case.js"></script>
+</head>
+<body>
+
+<div id="container">
+<h1>Convert the String to Title Case</h1>
+<form id="tester" action="">
+  <h2>Input and Output</h2>
+  <p>
+    <input aria-label="Title to convert" id="untitled" type="text" value="" />
+  </p>
+  <p>
+    <input type="submit" value="Convert &darr;" />
+  </p>
+  <p>
+    <input aria-label="Result" id="titled" type="text" class="js-copytextarea" />
+  </p>
+  <button class="js-textareacopybtn">Copy The Output</button>
+</form>
+
+</div>
+<script>
+  document.getElementById('tester').addEventListener('submit', function(ev) {
+    ev.preventDefault()
+    document.getElementById('titled').value =
+      document.getElementById('untitled').value.trim().toLowerCase().toTitleCase()
+  })
+
+  window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date
+  ga('create', 'UA-7332308-1', 'auto')
+  ga('set', 'anonymizeIp', true)
+  ga('send', 'pageview')
+  var copyTextareaBtn = document.querySelector('.js-textareacopybtn');
+
+  copyTextareaBtn.addEventListener('click', function(event) {
+    var copyTextarea = document.querySelector('.js-copytextarea');
+    copyTextarea.focus();
+    copyTextarea.select();
+
+    try {
+      var successful = document.execCommand('copy');
+      var msg = successful ? 'successful' : 'unsuccessful';
+      console.log('Copying text command was ' + msg);
+    } catch (err) {
+      console.log('Oops, unable to copy');
+    }
+  });
+</script>
+</body>
+</html>
+
