@@ -6,9 +6,10 @@ String.prototype.toTitleCase = function () {
   var smallWords = /^(a|an|and|as|at|but|by|en|for|if|in|nor|of|on|or|per|the|to|v.?|vs.?|via)$/i
   var alphanumericPattern = /([A-Za-z0-9\u00C0-\u00FF])/
   var wordSeparators = /([ :–—-])/
-  var lowerBar = /_/g;
+  let lowerBar = /_/g;
+  let trimBeginEndPattern = /^[\s.,;:\-_!?]*([a-zA-Z0-9].*[a-zA-Z0-9])[\s.,;:\-_!?]*$/g;
 
-  return this.replace(lowerBar, " ").split(wordSeparators)
+  return this.replace(trimBeginEndPattern,"$1").replace(lowerBar, " ").split(wordSeparators)
     .map(function (current, index, array) {
       if (
         /* Check for small words */
