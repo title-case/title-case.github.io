@@ -51,5 +51,3 @@ String.prototype.toTitleCase = function () {
     })
     .join('') // convert the list into a string
 }
-
-console.log("1 the conjugation operator".toTitleCase())
