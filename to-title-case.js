@@ -11,7 +11,7 @@ String.prototype.toTitleCase = function () {
   /* regular expression: remove the space character, punctuation (.,;:!?), 
      dash and lower bar at both ends of the string */
   let trimBeginEndPattern = /^[\s.,;:!?_\-]*([a-zA-Z0-9].*[a-zA-Z0-9])[\s.,;:!?_\-]*$/g;
-  let RomanNumberPattern = /^[I|II|III|IV|V|VI|VII|VIII|IX|X]$/i
+  let RomanNumberPattern = /^I|II|III|IV|V|VI|VII|VIII|IX|X$/i;
 
   return this.replace(trimBeginEndPattern,"$1")
     .replace(lowerBar, " ")
@@ -36,7 +36,7 @@ String.prototype.toTitleCase = function () {
       }
       
       /* Uppercase roman numbers */
-      if (current.search(RomanNumberPattern)>-1) {
+      if (current.search(RomanNumberPattern) > -1) {
         return current.toUpperCase();
       }
 
@@ -57,3 +57,5 @@ String.prototype.toTitleCase = function () {
     })
     .join('') // convert the list into a string
 }
+
+// console.log("1. the Sub-Bergman Hilbert spaces in the unit disk, viii,,..".toTitleCase())
