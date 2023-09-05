@@ -11,6 +11,7 @@ String.prototype.toTitleCase = function () {
   /* regular expression: remove the space character, punctuation (.,;:!?), 
      dash and lower bar at both ends of the string */
   let trimBeginEndPattern = /^[\s.,;:!?_\-]*([a-zA-Z0-9].*[a-zA-Z0-9])[\s.,;:!?_\-]*$/g;
+  let RomanNumberPattern = /^[I|II|III|IV|V|VI|VII|VIII|IX|X]$/i
 
   return this.replace(trimBeginEndPattern,"$1")
     .replace(lowerBar, " ")
@@ -32,6 +33,11 @@ String.prototype.toTitleCase = function () {
           (array[index - 1] === '-' && array[index + 1] === '-'))
       ) {
         return current.toLowerCase()
+      }
+      
+      /* Uppercase roman numbers */
+      if (current.search(RomanNumberPattern)>-1) {
+        return current.toUpperCase();
       }
 
       /* Ignore intentional capitalization */
