@@ -23,7 +23,7 @@ String.prototype.toTitleCase = function () {
         index !== 0 &&
         index !== array.length - 1 &&
         /* cope with the situation such as: 1. the conjugation operator */
-        array.slice(0,index-1).join('').search(/a-zA-Z/)>-1 &&
+        array.slice(0,index-1).join('').search(/[a-zA-Z]/) > -1 &&
         /* Ignore title end and subtitle start */
         array[index - 3] !== ':' &&
         array[index + 1] !== ':' &&
