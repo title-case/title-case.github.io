@@ -35,7 +35,7 @@
   document.getElementById('tester').addEventListener('submit', function(ev) {
     ev.preventDefault()
     document.getElementById('titled').value =
-      document.getElementById('untitled').value.trim().toLowerCase().toTitleCase()
+      document.getElementById('untitled').value.toTitleCase()
   })
 
   window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date

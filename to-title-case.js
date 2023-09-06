@@ -3,17 +3,17 @@
 // eslint-disable-next-line no-extend-native
 String.prototype.toTitleCase = function () {
   'use strict'
-  let smallWords = /^(a|an|and|as|at|but|by|en|for|if|in|nor|of|on|or|per|the|to|v.?|vs.?|via)$/i
-  let alphanumericPattern = /([A-Za-z0-9\u00C0-\u00FF])/
+  let smallWords = /^(a|an|and|as|at|but|by|en|for|if|in|nor|of|on|or|per|the|to|v.?|vs.?|via)$/i;
+  let alphanumericPattern = /([A-Za-z0-9\u00C0-\u00FF])/;
   /* note there is a capturing group, so the separators will also be included in the returned list */
-  let wordSeparators = /([ :–—-])/
+  let wordSeparators = /([ :–—-])/;
   let lowerBar = /_/g;
   /* regular expression: remove the space character, punctuation (.,;:!?), 
      dash and lower bar at both ends of the string */
   let trimBeginEndPattern = /^[\s.,;:!?_\-]*([a-zA-Z0-9].*[a-zA-Z0-9])[\s.,;:!?_\-]*$/g;
-  let RomanNumberPattern = /^I|II|III|IV|V|VI|VII|VIII|IX|X$/i;
+  let romanNumberPattern = /^(I|II|III|IV|V|VI|VII|VIII|IX|X)$/i;
 
-  return this.replace(trimBeginEndPattern,"$1")
+  return this.toLowerCase().replace(trimBeginEndPattern,"$1")
     .replace(lowerBar, " ")
     .split(wordSeparators)
     .map(function (current, index, array) {
@@ -36,26 +36,26 @@ String.prototype.toTitleCase = function () {
       }
       
       /* Uppercase roman numbers */
-      if (current.search(RomanNumberPattern) > -1) {
+      if (current.search(romanNumberPattern) > -1) {
         return current.toUpperCase();
       }
 
       /* Ignore intentional capitalization */
       if (current.substring(1).search(/[A-Z]|\../) > -1) {
-        return current
+        return current;
       }
 
       /* Ignore URLs */
       if (array[index + 1] === ':' && array[index + 2] !== '') {
-        return current
+        return current;
       }
 
       /* Capitalize the first letter */
       return current.replace(alphanumericPattern, function (match) {
-        return match.toUpperCase()
+        return match.toUpperCase();
       })
     })
     .join('') // convert the list into a string
 }
 
-// console.log("1. the Sub-Bergman Hilbert spaces in the unit disk, viii,,..".toTitleCase())
+// console.log("1. the Sub-Bergman Hilbert spaces in vii viia via the unit disk, II,".toTitleCase());
